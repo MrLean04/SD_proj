@@ -1,7 +1,7 @@
-//package entities;
+package entities;
 
 import java.util.*;
-import shared.PassengerDA ;
+import shared.PassengerDA;
 import shared.PassengerP;
 import shared.PassengerDSA ;
 
@@ -9,7 +9,8 @@ import shared.PassengerDSA ;
 public class Passenger extends Thread{
 
     private PassengerState state;
-    private final int id;
+    private final int id=0;
+	/** 
 	private final PassengerDA Departureairport;
 	private final PassengerP Plane;
 	private final PassengerDSA Destinationairport; 
@@ -22,13 +23,13 @@ public class Passenger extends Thread{
 	 * @param Plane
 	 * @param Destinationairport
      * @param id
-	 */
+	 */ /** 
 	public Passenger(PassengerDA Departureairport, PassengerP Plane, PassengerDsA Destinationairport, int id) {
 		this.DepartureAirport = DepartureAirport;
 		this.Plane = Plane;
 		this.DestinationAirport = DestinationAirport;
         this.id = id;
-	}
+	} */
 
 	@Override
 	public void run() {
