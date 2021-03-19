@@ -12,5 +12,4 @@ import entities.PilotState;
  * @author Leandro e João
  */
 public interface PilotP {
-	public void queueIn(PilotState state);
 }

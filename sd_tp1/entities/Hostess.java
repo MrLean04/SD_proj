@@ -8,10 +8,10 @@ import shared.HostessDSA ;
 public class Hostess extends Thread{
 
     private HostessState state;
-	/** 
+	
 	private final HostessDA Departureairport;
 	private final HostessP Plane;
-	private final HostessDSA Destinationairport; */
+	private final HostessDSA Destinationairport; 
     
 
 	/**
@@ -19,13 +19,13 @@ public class Hostess extends Thread{
 	 *
 	 * @param Departureairport
 	 * @param Plane
-	 * @param Destinationairport
+	 * @param Destinationairport */
 	 
-	public Pilot(HostessDA Departureairport, HostessP Plane, HostessDsA Destinationairport) {
-		this.DepartureAirport = DepartureAirport;
+	public Hostess(HostessDA Departureairport, HostessP Plane, HostessDSA Destinationairport) {
+		this.Departureairport = Departureairport;
 		this.Plane = Plane;
-		this.DestinationAirport = DestinationAirport;
-	}*/
+		this.Destinationairport = Destinationairport;
+	}
 
 	@Override
 	public void run() {

@@ -12,5 +12,5 @@ import entities.HostessState;
  * @author Leandro e João
  */
 public interface HostessP {
-	public void queueIn(HostessState state);
+
 }

@@ -9,7 +9,7 @@ import java.util.*;
 public class Pilot extends Thread{
 
     private PilotState state;
-	/**
+	
 	private final PilotDA Departureairport;
 	private final PilotP Plane;
 	private final PilotDSA Destinationairport; 
@@ -21,12 +21,12 @@ public class Pilot extends Thread{
 	 * @param Departureairport
 	 * @param Plane
 	 * @param Destinationairport
-	 */ /** 
-	public Pilot(PilotDA Departureairport, PilotP Plane, PilotDsA Destinationairport) {
-		this.DepartureAirport = DepartureAirport;
+	 */  
+	public Pilot(PilotDA Departureairport, PilotP Plane, PilotDSA Destinationairport) {
+		this.Departureairport = Departureairport;
 		this.Plane = Plane;
-		this.DestinationAirport = DestinationAirport;
-	}*/
+		this.Destinationairport = Destinationairport;
+	}
 
 	@Override
 	public void run() {

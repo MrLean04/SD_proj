@@ -12,5 +12,5 @@ import entities.PassengerState;
  * @author Leandro e João
  */
 public interface PassengerDA {
-	public void queueIn(PassengerState state);
+
 }

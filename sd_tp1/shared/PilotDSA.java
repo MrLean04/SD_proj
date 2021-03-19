@@ -12,5 +12,5 @@ import entities.PilotState;
  * @author Leandro e João
  */
 public interface PilotDSA {
-	public void queueIn(PilotState state);
+
 }

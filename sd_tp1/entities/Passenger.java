@@ -9,8 +9,7 @@ import shared.PassengerDSA ;
 public class Passenger extends Thread{
 
     private PassengerState state;
-    private final int id=0;
-	/** 
+    private final int id;
 	private final PassengerDA Departureairport;
 	private final PassengerP Plane;
 	private final PassengerDSA Destinationairport; 
@@ -23,13 +22,13 @@ public class Passenger extends Thread{
 	 * @param Plane
 	 * @param Destinationairport
      * @param id
-	 */ /** 
-	public Passenger(PassengerDA Departureairport, PassengerP Plane, PassengerDsA Destinationairport, int id) {
-		this.DepartureAirport = DepartureAirport;
+	 */ 
+	public Passenger(PassengerDA Departureairport, PassengerP Plane, PassengerDSA Destinationairport, int id) {
+		this.Departureairport = Departureairport;
 		this.Plane = Plane;
-		this.DestinationAirport = DestinationAirport;
+		this.Destinationairport = Destinationairport;
         this.id = id;
-	} */
+	} 
 
 	@Override
 	public void run() {
