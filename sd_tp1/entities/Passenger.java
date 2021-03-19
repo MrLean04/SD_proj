@@ -13,6 +13,7 @@ public class Passenger extends Thread{
 	private final PassengerDA Departureairport;
 	private final PassengerP Plane;
 	private final PassengerDSA Destinationairport; 
+	private boolean happyCustomer = false;
     
 
 	/**
@@ -33,7 +34,7 @@ public class Passenger extends Thread{
 	@Override
 	public void run() {
 		this.setPassengerState(PassengerState.GOING_TO_AIRPORT);
-		//while (!this.happyCustomer) {
+		while (!this.happyCustomer) {
 			switch (this.state) {
 				case  GOING_TO_AIRPORT:
 					System.out.println("GOING_TO_AIRPORT");
@@ -52,10 +53,11 @@ public class Passenger extends Thread{
 					
 				case   AT_DESTINATION:
 					System.out.println("AT_DESTINATION");					
-					setPassengerState(PassengerState.GOING_TO_AIRPORT );
+					//setPassengerState(PassengerState.GOING_TO_AIRPORT );
+					this.happyCustomer = true;
 					break;
 			}
-		//}
+		}
 	}
 
     /**

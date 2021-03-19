@@ -16,23 +16,38 @@ import shared.Plane;
 import shared.Departureairport;
 import shared.Destinationairport;
 
-public class Main {
-    
-    private static Departureairport departureairport;
+public class Main extends Thread {
+
+	private static Departureairport departureairport;
 	private static Plane plane;
 	private static Destinationairport destinationairport;
-    public static void main(String[] args) {
+
+	public static void main(String[] args) {
         
 		final int nPassengers = 20;
         
-			Pilot = new Pilot((PilotDA) departureairport, (PilotP) plane, (PilotDSA) destinationairport);
-			Pilot.start();
-			Hostess = new Hostess((HostessDA) departureairport, (HostessP) plane, (HostessDSA) destinationairport);
-			Hostess.start();
+		Pilot p = new Pilot((PilotDA) departureairport, (PilotP) plane, (PilotDSA) destinationairport);
+		p.start();
+		Hostess h = new Hostess((HostessDA) departureairport, (HostessP) plane, (HostessDSA) destinationairport);
+		h.start();
 
-		Passenger = new Passenger[nPassengers];
+		
+		Passenger[] passenger  = new Passenger[nPassengers];
 		for (int i = 0; i < nPassengers; i++) {
-			Passenger[i] = new Passenger((PassengerDA) departureairport, (PassengerP) plane, (PassengerDSA) destinationairport, (int) i);
-			Passenger[i].start();
+			passenger[i] = new Passenger((PassengerDA) departureairport, (PassengerP) plane, (PassengerDSA) destinationairport, (int) i);
+			passenger[i].start();
 		}
+
+		
+			for (int i = 0; i < nPassengers; i++) {
+				try{
+					passenger[i].join(0);
+					System.err.println("Passenger "+ i + " died!");
+				} catch (InterruptedException ex) {
+
+				}
+			}
+		
+
+	}
 }
