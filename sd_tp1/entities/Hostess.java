@@ -26,6 +26,34 @@ public class Hostess extends Thread{
 		this.DestinationAirport = DestinationAirport;
 	}
 
+	@Override
+	public void run() {
+		this.setHostessState(HostessState.WAIT_FOR_NEXT_FLIGHT);
+		//while (!this.happyCustomer) {
+			switch (this.state) {
+				case  WAIT_FOR_NEXT_FLIGHT:
+					System.out.println("WAIT_FOR_NEXT_FLIGHT");
+					setHostessState(HostessState.WAIT_FOR_PASSENGER);
+					break;
+
+				case  WAIT_FOR_PASSENGER:
+					System.out.println("WAIT_FOR_PASSENGER");					
+					setHostessState(HostessState.CHECK_PASSENGER );
+					break;
+				
+				case  CHECK_PASSENGER:
+					System.out.println("CHECK_PASSENGER");					
+					setHostessState(HostessState.FLYING_FORWARD );
+					break;
+					
+				case   READY_TO_FLY:
+					System.out.println("READY_TO_FLY");					
+					setHostessState(HostessState.WAIT_FOR_NEXT_FLIGHT );
+					break;
+			}
+		//}
+	}
+
 
     /**
 	 * Hostess's method. Change state of hostess and report status to log.

@@ -3,6 +3,7 @@ package entities;
 import shared.PilotDA ;
 import shared.PilotP;
 import shared.PilotDSA ;
+import java.util.*;
 
 
 public class Pilot extends Thread{
@@ -24,6 +25,44 @@ public class Pilot extends Thread{
 		this.DepartureAirport = DepartureAirport;
 		this.Plane = Plane;
 		this.DestinationAirport = DestinationAirport;
+	}
+
+	@Override
+	public void run() {
+		this.setPilotState(PilotState.GOING_TO_AIRPORT);
+		//while (!this.happyCustomer) {
+			switch (this.state) {
+				case  AT_TRANSFER_GATE:
+					System.out.println("AT_TRANSFER_GATE ");
+					setPilotState(PilotState.READY_FOR_BOARDING);
+					break;
+
+				case  READY_FOR_BOARDING:
+					System.out.println(" READY_FOR_BOARDING ");					
+					setPilotState(PilotState.WAIT_FOR_BOARDING );
+					break;
+				
+				case  WAIT_FOR_BOARDING:
+					System.out.println(" READY_FOR_BOARDING ");					
+					setPilotState(PilotState.FLYING_FORWARD );
+					break;
+					
+				case  FLYING_FORWARD:
+					System.out.println("FLYING_FORWARD ");					
+					setPilotState(PilotState.DEBOARDING );
+					break;
+				
+				case  DEBOARDING:
+					System.out.println("DEBOARDING ");					
+					setPilotState(PilotState.FLYING_BACK );
+					break;
+				
+				case FLYING_BACK:
+					System.out.println("FLYING BACK");					
+					setPilotState(PilotState.AT_TRANSFER_GATE);
+					break;
+			}
+		//}
 	}
 
 
