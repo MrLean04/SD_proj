@@ -22,32 +22,41 @@ public class Departureairport implements PilotDA, PassengerDA, HostessDA {
 
     //Pilot
     public synchronized void readyForBoarding() {
+        //TO-DO
     }
 
     public synchronized void parkAtTransfer() {
+    //TO-DO
     }
 
     //Hostess
     public synchronized void preparePassBoarding() {
+    //TO-DO
     }
 
     public synchronized void checkAndWait() {
+    //TO-DO
     }
 
     public synchronized void planeReadyToTakeoff() {
+    //TO-DO
     }
 
     public synchronized void waitForNextFlight() {
+    //TO-DO
     }
 
     //Passenger 
     public synchronized void travelToAirport() {
+    //TO-DO
     }
 
     public synchronized void waitInQueue() {
+    //TO-DO
     }
 
     public synchronized void showDocuments() {
+    //TO-DO
     }
 
 
