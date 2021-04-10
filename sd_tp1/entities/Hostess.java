@@ -8,7 +8,7 @@ import shared.HostessDSA ;
 public class Hostess extends Thread{
 
     private HostessState state;
-	
+	boolean happyhostess=false;
 	private final HostessDA Departureairport;
 	private final HostessP Plane;
 	private final HostessDSA Destinationairport; 
@@ -19,8 +19,7 @@ public class Hostess extends Thread{
 	 *
 	 * @param Departureairport
 	 * @param Plane
-	 * @param Destinationairport */
-	 
+	 * @param Destinationairport */	 
 	public Hostess(HostessDA Departureairport, HostessP Plane, HostessDSA Destinationairport) {
 		this.Departureairport = Departureairport;
 		this.Plane = Plane;
@@ -30,7 +29,7 @@ public class Hostess extends Thread{
 	@Override
 	public void run() {
 		this.setHostessState(HostessState.WAIT_FOR_NEXT_FLIGHT);
-		//while (!this.happyCustomer) {
+		while (!happyhostess) {
 			switch (this.state) {
 				case  WAIT_FOR_NEXT_FLIGHT:
 					System.out.println("WAIT_FOR_NEXT_FLIGHT");
@@ -43,16 +42,21 @@ public class Hostess extends Thread{
 					break;
 				
 				case  CHECK_PASSENGER:
-					System.out.println("CHECK_PASSENGER");					
-					setHostessState(HostessState.READY_TO_FLY );
+					System.out.println("CHECK_PASSENGER");
+					Departureairport.readyForCheck();
+					boolean ready = Departureairport.checkAndWait();
+					if (ready){					
+						setHostessState(HostessState.READY_TO_FLY );
+					}
 					break;
 					
 				case   READY_TO_FLY:
 					System.out.println("READY_TO_FLY");					
 					setHostessState(HostessState.WAIT_FOR_NEXT_FLIGHT );
+					happyhostess=true;
 					break;
 			}
-		//}
+		}
 	}
 
 

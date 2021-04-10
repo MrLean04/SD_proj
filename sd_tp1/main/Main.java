@@ -23,31 +23,46 @@ public class Main extends Thread {
 	private static Destinationairport destinationairport;
 
 	public static void main(String[] args) {
-        
-		final int nPassengers = 20;
-        
+
+		final int nPassengers = 10;
+		departureairport = new Departureairport();
+		plane = new Plane();
+		destinationairport = new Destinationairport();
 		Pilot p = new Pilot((PilotDA) departureairport, (PilotP) plane, (PilotDSA) destinationairport);
 		p.start();
 		Hostess h = new Hostess((HostessDA) departureairport, (HostessP) plane, (HostessDSA) destinationairport);
 		h.start();
 
-		
-		Passenger[] passenger  = new Passenger[nPassengers];
+		Passenger[] passenger = new Passenger[nPassengers];
 		for (int i = 0; i < nPassengers; i++) {
-			passenger[i] = new Passenger((PassengerDA) departureairport, (PassengerP) plane, (PassengerDSA) destinationairport, (int) i);
+			passenger[i] = new Passenger((PassengerDA) departureairport, (PassengerP) plane,
+					(PassengerDSA) destinationairport, (int) i);
 			passenger[i].start();
 		}
+		try {
+			h.join(0);
+			System.err.println("Hostess died!");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 
+		}
 		
-			for (int i = 0; i < nPassengers; i++) {
-				try{
-					passenger[i].join(0);
-					System.err.println("Passenger "+ i + " died!");
-				} catch (InterruptedException ex) {
+		try {
+			p.join(0);
+			System.err.println("Pilot died!");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 
-				}
+		}
+
+		for (int i = 0; i < nPassengers; i++) {
+			try {
+				passenger[i].join(0);
+				System.err.println("Passenger " + i + " died!");
+			} catch (InterruptedException ex) {
+
 			}
-		
+		}				
 
 	}
 }

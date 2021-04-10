@@ -15,6 +15,8 @@ import java.util.Queue;
  */
 public class Destinationairport implements PilotDSA, PassengerDSA, HostessDSA {
 
+    public Destinationairport(){// 
+    }
      //Pilot
     public synchronized void AnnounceArival() {
         //TO-DO

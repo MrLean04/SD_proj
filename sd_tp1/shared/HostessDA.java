@@ -13,4 +13,15 @@ import entities.HostessState;
  */
 public interface HostessDA {
 
+    public  void preparePassBoarding();
+
+        public  boolean checkAndWait();
+
+    
+        public  void planeReadyToTakeoff(); 
+
+    
+        public  void waitForNextFlight();
+        public  void readyForCheck();
+
 }

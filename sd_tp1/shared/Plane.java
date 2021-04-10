@@ -15,6 +15,10 @@ import java.util.Queue;
  */
 public class Plane implements PilotP, PassengerP, HostessP {
 
+    public Plane(){
+        //
+    }
+
     //Pilot
     public synchronized void WairForAllInBoard() {
         //TO-DO

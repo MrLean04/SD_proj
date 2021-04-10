@@ -1,5 +1,6 @@
 package entities;
 
+import java.lang.ref.Cleaner;
 import java.util.*;
 import shared.PassengerDA;
 import shared.PassengerP;
@@ -13,7 +14,7 @@ public class Passenger extends Thread{
 	private final PassengerDA Departureairport;
 	private final PassengerP Plane;
 	private final PassengerDSA Destinationairport; 
-	private boolean happyCustomer = false;
+	private boolean happyPassenger = false;
     
 
 	/**
@@ -34,27 +35,31 @@ public class Passenger extends Thread{
 	@Override
 	public void run() {
 		this.setPassengerState(PassengerState.GOING_TO_AIRPORT);
-		while (!this.happyCustomer) {
+		while (!this.happyPassenger) {
 			switch (this.state) {
 				case  GOING_TO_AIRPORT:
-					System.out.println("GOING_TO_AIRPORT");
+					System.out.println("GOING_TO_AIRPORT " + id);
 					setPassengerState(PassengerState.IN_QUEUE);
 					break;
 
 				case  IN_QUEUE:
-					System.out.println("IN_QUEUE");					
-					setPassengerState(PassengerState.IN_FLIGHT );
+					//System.out.println("IN_QUEUE " + id);
+					Departureairport.waitInQueue(id,state);
+					boolean check = Departureairport.showDocuments(id);
+					if (check){				
+						setPassengerState(PassengerState.IN_FLIGHT );
+					}	
 					break;
 				
 				case  IN_FLIGHT:
-					System.out.println("IN_FLIGHT");					
+					System.out.println("IN_FLIGHT " + id);					
 					setPassengerState(PassengerState.AT_DESTINATION );
 					break;
 					
 				case   AT_DESTINATION:
-					System.out.println("AT_DESTINATION");					
+					System.out.println("AT_DESTINATION " + id);					
 					//setPassengerState(PassengerState.GOING_TO_AIRPORT );
-					this.happyCustomer = true;
+					this.happyPassenger = true;
 					break;
 			}
 		}
