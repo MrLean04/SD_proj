@@ -18,10 +18,10 @@ public interface HostessDA {
         public  boolean checkAndWait();
 
     
-        public  void planeReadyToTakeoff(); 
+        public  boolean planeReadyToTakeoff(); 
 
     
         public  void waitForNextFlight();
-        public  void readyForCheck();
+        //public  boolean readyForCheck();
 
 }

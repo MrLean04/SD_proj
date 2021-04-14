@@ -35,11 +35,13 @@ public class Pilot extends Thread{
 			switch (this.state) {
 				case  AT_TRANSFER_GATE:
 					//System.out.println("AT_TRANSFER_GATE ");
+					Departureairport.parkAtTransfer();	
 					setPilotState(PilotState.READY_FOR_BOARDING);
 					break;
 
 				case  READY_FOR_BOARDING:
-					//System.out.println(" READY_FOR_BOARDING ");					
+					//System.out.println(" READY_FOR_BOARDING ");	
+					Departureairport.readyForBoarding();				
 					setPilotState(PilotState.WAIT_FOR_BOARDING );
 					break;
 				
