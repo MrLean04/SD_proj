@@ -20,7 +20,7 @@ public class Plane implements PilotP, PassengerP, HostessP {
     }
 
     //Pilot
-    public synchronized void WairForAllInBoard() {
+    public synchronized void WaitForAllInBoard() {
         //TO-DO
     }
 

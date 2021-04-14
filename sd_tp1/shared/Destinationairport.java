@@ -18,7 +18,7 @@ public class Destinationairport implements PilotDSA, PassengerDSA, HostessDSA {
     public Destinationairport(){// 
     }
      //Pilot
-    public synchronized void AnnounceArival() {
+    public synchronized void AnnounceArrival() {
         //TO-DO
     }
 }

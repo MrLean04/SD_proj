@@ -41,7 +41,8 @@ public class Pilot extends Thread{
 
 				case  READY_FOR_BOARDING:
 					//System.out.println(" READY_FOR_BOARDING ");	
-					Departureairport.readyForBoarding();				
+					Departureairport.readyForBoarding();
+					Departureairport.WaitForBoarding();			
 					setPilotState(PilotState.WAIT_FOR_BOARDING );
 					break;
 				

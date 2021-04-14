@@ -41,16 +41,17 @@ public class Departureairport implements PilotDA, PassengerDA, HostessDA {
     @Override
     public synchronized void readyForBoarding() {
         pilotready=true;
-        if(pilotInpark){
+    }
+
+    @Override
+    public synchronized void WaitForBoarding() {
             notifyAll();
             while (!planeReadyToTakeoff()) { 
                 try {
                     wait();
                 } catch (InterruptedException e) {
-
                 }
-            }                 
-        }
+            }                    
     }
     // Hostess
     @Override
@@ -125,12 +126,27 @@ public class Departureairport implements PilotDA, PassengerDA, HostessDA {
     }
 
     @Override
+    public synchronized boolean waitinQueueFlight() {
+        // TO-DO
+            notifyAll();
+            while (!planeReadyToTakeoff()) { 
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+
+                }
+            }
+            return true;
+        
+    }
+
+    @Override
     public synchronized void waitInQueue(int id, PassengerState state) {
         inQueue.add(id);
         documentCheck.put(id, false);
 
         notifyAll();
-        while (nextPassenger != id) { 
+        while (nextPassenger != id && readyForCheckDoc) { 
             try {
                 wait();
             } catch (InterruptedException e) {

@@ -14,4 +14,5 @@ import entities.PilotState;
 public interface PilotDA {
 	public void parkAtTransfer();
     public void readyForBoarding();
+    public void WaitForBoarding();
 }

@@ -45,7 +45,7 @@ public class Passenger extends Thread{
 				case  IN_QUEUE:
 					//System.out.println("IN_QUEUE " + id);
 					Departureairport.waitInQueue(id,state);
-					boolean check = Departureairport.showDocuments(id);
+					boolean check = Departureairport.waitinQueueFlight();  //Departureairport.showDocuments(id);
 					if (check){				
 						setPassengerState(PassengerState.IN_FLIGHT );
 					}	

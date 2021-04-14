@@ -44,8 +44,8 @@ public class Hostess extends Thread{
 				case  CHECK_PASSENGER:
 					System.out.println("CHECK_PASSENGER");
 					Departureairport.preparePassBoarding();
-					Departureairport.readyForCheck();
-					//Departureairport.checkAndWait();
+					//Departureairport.readyForCheck();
+					Departureairport.checkAndWait();
 					boolean ready = Departureairport.checkAndWait();//Departureairport.planeReadyToTakeoff();
 					if (ready){					
 						setHostessState(HostessState.READY_TO_FLY );
