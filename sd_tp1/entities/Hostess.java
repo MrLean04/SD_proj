@@ -33,6 +33,7 @@ public class Hostess extends Thread{
 			switch (this.state) {
 				case  WAIT_FOR_NEXT_FLIGHT:
 					System.out.println("WAIT_FOR_NEXT_FLIGHT");
+					Departureairport.waitForNextFlight();
 					setHostessState(HostessState.WAIT_FOR_PASSENGER);
 					break;
 
@@ -44,18 +45,19 @@ public class Hostess extends Thread{
 				case  CHECK_PASSENGER:
 					System.out.println("CHECK_PASSENGER");
 					Departureairport.preparePassBoarding();
-					//Departureairport.readyForCheck();
 					Departureairport.checkAndWait();
-					boolean ready = Departureairport.checkAndWait();//Departureairport.planeReadyToTakeoff();
+					boolean ready = Departureairport.planeReadyToTakeoff();
 					if (ready){					
 						setHostessState(HostessState.READY_TO_FLY );
 					}
 					break;
 					
 				case   READY_TO_FLY:
-					System.out.println("READY_TO_FLY");					
-					setHostessState(HostessState.WAIT_FOR_NEXT_FLIGHT );
-					happyhostess=true;
+					System.out.println("READY_TO_FLY");										
+					if(!Departureairport.hostessJobDone()){
+						setHostessState(HostessState.WAIT_FOR_NEXT_FLIGHT );
+					} else happyhostess = true;
+					
 					break;
 			}
 		}

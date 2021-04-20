@@ -59,6 +59,7 @@ public class Passenger extends Thread{
 				case   AT_DESTINATION:
 					System.out.println("AT_DESTINATION " + id);					
 					//setPassengerState(PassengerState.GOING_TO_AIRPORT );
+					Destinationairport.Deboarding(id);
 					this.happyPassenger = true;
 					break;
 			}

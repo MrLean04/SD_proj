@@ -24,7 +24,7 @@ public class Main extends Thread {
 
 	public static void main(String[] args) {
 
-		final int nPassengers = 10;
+		final int nPassengers = 20;
 		departureairport = new Departureairport();
 		plane = new Plane();
 		destinationairport = new Destinationairport();

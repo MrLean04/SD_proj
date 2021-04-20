@@ -14,11 +14,22 @@ import java.util.Queue;
  * @author Leandro and João
  */
 public class Destinationairport implements PilotDSA, PassengerDSA, HostessDSA {
+    private final Queue<Integer> inDestinationAirport = new LinkedList<>();
 
     public Destinationairport(){// 
     }
      //Pilot
-    public synchronized void AnnounceArrival() {
+    @Override
+    public synchronized boolean AnnounceArrival() {
         //TO-DO
+        if(inDestinationAirport.size() == 20) return true;
+        return false;
+    }
+    //Passenger
+    @Override
+    public synchronized boolean Deboarding(int id) {
+        //TO-DO
+        inDestinationAirport.add(id);
+        return false;
     }
 }

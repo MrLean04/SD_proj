@@ -13,6 +13,7 @@ public class Pilot extends Thread{
 	private final PilotDA Departureairport;
 	private final PilotP Plane;
 	private final PilotDSA Destinationairport; 
+	private boolean happypilot=false;
     
 
 	/**
@@ -31,7 +32,7 @@ public class Pilot extends Thread{
 	@Override
 	public void run() {
 		this.setPilotState(PilotState.AT_TRANSFER_GATE);
-		while (true) {
+		while (!happypilot) {
 			switch (this.state) {
 				case  AT_TRANSFER_GATE:
 					//System.out.println("AT_TRANSFER_GATE ");
@@ -64,6 +65,10 @@ public class Pilot extends Thread{
 				case FLYING_BACK:
 					//System.out.println("FLYING BACK");					
 					setPilotState(PilotState.AT_TRANSFER_GATE);
+					if(Destinationairport.AnnounceArrival()){
+						happypilot = true;
+						//System.out.println("morri");
+					}
 					break;
 			}
 		}

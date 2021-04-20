@@ -13,4 +13,5 @@ import entities.PassengerState;
  */
 public interface PassengerDSA {
 	
+    public boolean Deboarding(int id);
 }

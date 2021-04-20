@@ -15,7 +15,7 @@ public interface HostessDA {
 
     public  void preparePassBoarding();
 
-        public  boolean checkAndWait();
+        public  void checkAndWait();
 
     
         public  boolean planeReadyToTakeoff(); 
@@ -23,5 +23,6 @@ public interface HostessDA {
     
         public  void waitForNextFlight();
         //public  boolean readyForCheck();
+        public boolean hostessJobDone();
 
 }
