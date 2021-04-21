@@ -30,7 +30,7 @@ public class Destinationairport implements PilotDSA, PassengerDSA, HostessDSA {
     public synchronized boolean Deboarding(int id) {
         //TO-DO
         inDestinationAirport.add(id);
-        //System.out.println("chegamos" + inDestinationAirport);
+        System.out.println("chegamos" + inDestinationAirport);
         return false;
     }
 }

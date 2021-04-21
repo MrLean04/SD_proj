@@ -41,7 +41,7 @@ public class Pilot extends Thread{
 					break;
 
 				case  READY_FOR_BOARDING:
-					System.out.println("READY_FOR_BOARDING ");	
+					System.out.println(" READY_FOR_BOARDING ");	
 					Departureairport.readyForBoarding();		
 					setPilotState(PilotState.WAIT_FOR_BOARDING );
 					break;

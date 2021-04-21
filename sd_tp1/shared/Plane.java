@@ -75,7 +75,9 @@ public class Plane implements PilotP, PassengerP, HostessP {
                 wait();
             } catch (InterruptedException e) {
             }
-        } return true;
+        }
+        return true;
+
     }
 
         

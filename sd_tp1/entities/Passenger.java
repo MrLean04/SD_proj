@@ -56,9 +56,9 @@ public class Passenger extends Thread{
 				
 				case  IN_FLIGHT:
 					System.out.println("IN_FLIGHT " + id);
-					if(Plane.WaitingForEndOfFlight()){				
-						setPassengerState(PassengerState.AT_DESTINATION );
-					}
+					if(Plane.WaitingForEndOfFlight()){
+						setPassengerState(PassengerState.AT_DESTINATION);
+					}				
 					break;
 					
 				case   AT_DESTINATION:
