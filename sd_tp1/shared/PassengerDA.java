@@ -16,6 +16,7 @@ public interface PassengerDA {
     public void travelToAirport();
     public void waitInQueue(int id, PassengerState state);
     public boolean showDocuments(int id);
-    public boolean waitinQueueFlight();
+    public boolean waitinQueueFlight(int id);
+    public int planeSize();
     
 }

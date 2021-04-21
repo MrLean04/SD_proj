@@ -28,37 +28,39 @@ public class Hostess extends Thread{
 
 	@Override
 	public void run() {
-		this.setHostessState(HostessState.WAIT_FOR_NEXT_FLIGHT);
+		this.setHostessState(HostessState.WAIT_FOR_PASSENGER);
 		while (!happyhostess) {
 			switch (this.state) {
+				case  WAIT_FOR_PASSENGER:
+					System.out.println("WAIT_FOR_PASSENGER");
+					if(Departureairport.queueNotEmpty()){
+						setHostessState(HostessState.CHECK_PASSENGER );
+					}
+					break;
+				
+				case  CHECK_PASSENGER:
+					if(!Departureairport.hostessJobDone()){
+						System.out.println("CHECK_PASSENGER");
+						Departureairport.preparePassBoarding();
+						Departureairport.checkAndWait();					
+						boolean ready = Departureairport.planeReadyToTakeoff();
+						if (ready){
+							Plane.youCanFly();				
+							setHostessState(HostessState.READY_TO_FLY );
+						}
+					}else happyhostess = true;
+					break;
+					
+				case  READY_TO_FLY:
+					System.out.println("READY_TO_FLY");										
+					setHostessState(HostessState.WAIT_FOR_NEXT_FLIGHT );
+					break;
 				case  WAIT_FOR_NEXT_FLIGHT:
 					System.out.println("WAIT_FOR_NEXT_FLIGHT");
 					Departureairport.waitForNextFlight();
 					setHostessState(HostessState.WAIT_FOR_PASSENGER);
-					break;
-
-				case  WAIT_FOR_PASSENGER:
-					System.out.println("WAIT_FOR_PASSENGER");					
-					setHostessState(HostessState.CHECK_PASSENGER );
-					break;
-				
-				case  CHECK_PASSENGER:
-					System.out.println("CHECK_PASSENGER");
-					Departureairport.preparePassBoarding();
-					Departureairport.checkAndWait();
-					boolean ready = Departureairport.planeReadyToTakeoff();
-					if (ready){					
-						setHostessState(HostessState.READY_TO_FLY );
-					}
-					break;
+					break;		
 					
-				case   READY_TO_FLY:
-					System.out.println("READY_TO_FLY");										
-					if(!Departureairport.hostessJobDone()){
-						setHostessState(HostessState.WAIT_FOR_NEXT_FLIGHT );
-					} else happyhostess = true;
-					
-					break;
 			}
 		}
 	}

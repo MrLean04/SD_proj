@@ -15,33 +15,70 @@ import java.util.Queue;
  */
 public class Plane implements PilotP, PassengerP, HostessP {
 
+    private final Queue<Integer> inPlane = new LinkedList<>();
+    private boolean readyflyPilot=false;
+    private boolean passengersGoFly=false;
+    private boolean arrived = false;
+
     public Plane(){
         //
     }
 
     //Pilot
-    public synchronized void WaitForAllInBoard() {
+    @Override
+    public synchronized boolean WaitForAllInBoard() {
         //TO-DO
+        while (!readyflyPilot) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+            }
+        }
+        passengersGoFly=true;
+        notifyAll();
+        return true;
     }
 
-    //Pilot
-    public synchronized void FlyToDestinationPoint() {
-        //TO-DO
+    //
+    @Override
+    public synchronized void Arrived(){
+        arrived = true;
+        notifyAll();
     }
 
-     //Pilot
-    public synchronized void FlyToDeparturePoint() {
+    //hostess
+    @Override
+    public synchronized void youCanFly(){
+        //to do
+        readyflyPilot = true;
+        notifyAll();
+    }
+
+     //Passenger
+    @Override
+    public synchronized void BoardThePlane(int id) {
         //TO-DO
+        inPlane.add(id);
+        while (!passengersGoFly) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+            }
+        }
     }
 
      //Passenger 
-    public synchronized void BoardThePlane() {
+    public synchronized boolean WaitingForEndOfFlight() {
         //TO-DO
+        while (!arrived) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+            }
+        } return true;
     }
-     //Passenger 
-    public synchronized void WaitingForEndOfFlight() {
-    //TO-DO
-    }
+
+        
 }
 
 

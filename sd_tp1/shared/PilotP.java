@@ -12,4 +12,7 @@ import entities.PilotState;
  * @author Leandro e João
  */
 public interface PilotP {
+
+    public boolean WaitForAllInBoard();
+    public void Arrived();
 }

@@ -45,20 +45,24 @@ public class Passenger extends Thread{
 				case  IN_QUEUE:
 					//System.out.println("IN_QUEUE " + id);
 					Departureairport.waitInQueue(id,state);
-					boolean check = Departureairport.waitinQueueFlight();  //Departureairport.showDocuments(id);
-					if (check){				
-						setPassengerState(PassengerState.IN_FLIGHT );
+					if(Departureairport.showDocuments(id)){
+						boolean check = Departureairport.waitinQueueFlight(id); 
+						if (check){
+							Plane.BoardThePlane(id);
+							setPassengerState(PassengerState.IN_FLIGHT );
+						}
 					}	
 					break;
 				
 				case  IN_FLIGHT:
-					System.out.println("IN_FLIGHT " + id);					
-					setPassengerState(PassengerState.AT_DESTINATION );
+					System.out.println("IN_FLIGHT " + id);
+					if(Plane.WaitingForEndOfFlight()){				
+						setPassengerState(PassengerState.AT_DESTINATION );
+					}
 					break;
 					
 				case   AT_DESTINATION:
 					System.out.println("AT_DESTINATION " + id);					
-					//setPassengerState(PassengerState.GOING_TO_AIRPORT );
 					Destinationairport.Deboarding(id);
 					this.happyPassenger = true;
 					break;

@@ -25,4 +25,7 @@ public interface HostessDA {
         //public  boolean readyForCheck();
         public boolean hostessJobDone();
 
+        public boolean queueNotEmpty();
+        public int numberPassCheck();
+
 }

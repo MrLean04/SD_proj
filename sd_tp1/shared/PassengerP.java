@@ -12,4 +12,7 @@ import entities.PassengerState;
  * @author Leandro e João
  */
 public interface PassengerP {
+
+    public void BoardThePlane(int id);
+    public boolean WaitingForEndOfFlight();
 }

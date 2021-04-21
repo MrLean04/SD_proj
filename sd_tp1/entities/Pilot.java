@@ -35,40 +35,44 @@ public class Pilot extends Thread{
 		while (!happypilot) {
 			switch (this.state) {
 				case  AT_TRANSFER_GATE:
-					//System.out.println("AT_TRANSFER_GATE ");
+					System.out.println("AT_TRANSFER_GATE ");
 					Departureairport.parkAtTransfer();	
 					setPilotState(PilotState.READY_FOR_BOARDING);
 					break;
 
 				case  READY_FOR_BOARDING:
-					//System.out.println(" READY_FOR_BOARDING ");	
-					Departureairport.readyForBoarding();
-					Departureairport.WaitForBoarding();			
+					System.out.println("READY_FOR_BOARDING ");	
+					Departureairport.readyForBoarding();		
 					setPilotState(PilotState.WAIT_FOR_BOARDING );
 					break;
 				
 				case  WAIT_FOR_BOARDING:
-					//System.out.println(" READY_FOR_BOARDING ");					
-					setPilotState(PilotState.FLYING_FORWARD );
+					//System.out.println(" WAIT_FOR_BOARDING ");
+					//Departureairport.WaitForBoarding();
+					boolean Readytofly = Plane.WaitForAllInBoard();
+					if(Readytofly){			
+						setPilotState(PilotState.FLYING_FORWARD );
+					}
 					break;
 					
 				case  FLYING_FORWARD:
-					//System.out.println("FLYING_FORWARD ");					
+					System.out.println("FLYING_FORWARD ");					
 					setPilotState(PilotState.DEBOARDING );
 					break;
 				
 				case  DEBOARDING:
-					//System.out.println("DEBOARDING ");					
+					System.out.println("DEBOARDING ");
+					Plane.Arrived();				
 					setPilotState(PilotState.FLYING_BACK );
 					break;
 				
 				case FLYING_BACK:
-					//System.out.println("FLYING BACK");					
-					setPilotState(PilotState.AT_TRANSFER_GATE);
+					System.out.println("FLYING BACK");					
 					if(Destinationairport.AnnounceArrival()){
 						happypilot = true;
 						//System.out.println("morri");
 					}
+					setPilotState(PilotState.AT_TRANSFER_GATE);
 					break;
 			}
 		}
